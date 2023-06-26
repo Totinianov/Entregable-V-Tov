@@ -82,11 +82,11 @@ test("POST -> '/api/v1/movies/:id/actors', should return status code 201 and res
     };
 
     const res = await request(app)
-        .post(`/api/v1/movies/${movie.id}/actors`) // Ruta
+        .post(`${URL_BASE}/${movie.id}/actors`) // Ruta
         .send(moviesActors); // Enviar
 
-    // expect(res.status).toBe(201);
-    // expect(res.body.id).toBe(songBody.id);
+    expect(res.status).toBe(201);
+    expect(res.body.id).toBe(songBody.id);
 
     await actor.destroy();
     await movie.destroy();
