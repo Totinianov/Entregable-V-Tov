@@ -76,23 +76,20 @@ test("POST -> '/api/v1/movies/:id/actors', should return status code 201 and res
 
     const movie = await Movie.create(movieBody);
 
-    const moviesActors = {
-        actorId: `${actor.id}`,
-        movieId: `${movie.id}`,
-    };
+    const actorId = `${actor.id}`;
 
     const res = await request(app)
         .post(`${URL_BASE}/${movie.id}/actors`) // Ruta
-        .send(moviesActors); // Enviar
+        .send([actorId]); // Enviar
 
-    expect(res.status).toBe(201);
-    expect(res.body.id).toBe(songBody.id);
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveLength(1);
 
     await actor.destroy();
     await movie.destroy();
 });
 
-/* Tabla pivot Relaciones "MoviesDirectors": movies y directors  
+// Tabla pivot Relaciones "MoviesDirectors": movies y directors
 test("POST -> 'URL', should return status code 201 and res.body.name === body.name", async () => {
     const genresBody = {
         firstName: "Chris",
@@ -113,23 +110,20 @@ test("POST -> 'URL', should return status code 201 and res.body.name === body.na
 
     const movie = await Movie.create(movieBody);
 
-    const moviesDirectors = {
-        movieId: `${movie.id}`,
-        directorId: `${director.id}`,
-    };
+    const directorId = `${director.id}`;
 
     const res = await request(app)
-        .post("/api/v1/MoviesDirectors") // Ruta
-        .send(moviesDirectors); // Enviar
+        .post(`${URL_BASE}/${movie.id}/directors`) // Ruta
+        .send([directorId]); // Enviar
 
-    //    expect(res.status).toBe(201);
-    //    expect(res.body.name).toBe(songBody.name);
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveLength(1);
 
     await director.destroy();
     await movie.destroy();
 });
 
-/* Tabla pivot Relaciones "MoviesGenres": movies y genres 
+//Tabla pivot Relaciones "MoviesGenres": movies y genres
 test("POST -> 'URL', should return status code 201 and res.body.name === body.name", async () => {
     const genresBody = {
         name: "Ciencia ficcion",
@@ -146,20 +140,15 @@ test("POST -> 'URL', should return status code 201 and res.body.name === body.na
 
     const movie = await Movie.create(movieBody);
 
-    const moviesGenres = {
-        movieId: `${movie.id}`,
-        genreId: `${genre.id}`,
-    };
+    const genreId = `${genre.id}`;
 
     const res = await request(app)
-        .post("/api/v1/MoviesGenres") // Ruta
-        .send(moviesGenres); // Enviar
+        .post(`${URL_BASE}/${movie.id}/genres`) // Ruta
+        .send([genreId]); // Enviar
 
-    //    expect(res.status).toBe(201);
-    //    expect(res.body.name).toBe(songBody.name);
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveLength(1);
 
     await genre.destroy();
     await movie.destroy();
 });
-
-*/
