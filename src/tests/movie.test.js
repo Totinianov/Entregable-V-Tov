@@ -68,7 +68,7 @@ test("POST -> '/api/v1/movies/:id/actors', should return status code 201 and res
     const actor = await Actor.create(actorBody);
 
     const movieBody = {
-        name: "Margony",
+        name: "Jarry Potter y la Piedra Filosofal",
         image: "lorem10",
         synopsis: "lorem20",
         releaseYear: 2012,

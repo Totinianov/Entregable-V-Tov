@@ -18,6 +18,8 @@ test("POST -> 'URL', should return status code 201 and res.body.name === body.na
         .post(URL_BASE) // crear
         .send(actor); // enviar
 
+    console.log(res.body);
+
     actorId = res.body.id;
 
     expect(res.status).toBe(201);
