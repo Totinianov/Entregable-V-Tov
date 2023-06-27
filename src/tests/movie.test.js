@@ -56,7 +56,7 @@ test("DELETE 'URL', should return status code 204", async () => {
 });
 
 /* Tabla pivot Relaciones "MoviesActors": movies y actors  */
-test("POST -> '/api/v1/movies/:id/actors', should return status code 201 and res.body.name === body.name", async () => {
+test("POST -> '/api/v1/movies/:id/actors', should return status code 200 and res.body.name === body.name", async () => {
     const actorBody = {
         firstName: "Harry",
         lastName: "Potter",
@@ -90,7 +90,7 @@ test("POST -> '/api/v1/movies/:id/actors', should return status code 201 and res
 });
 
 // Tabla pivot Relaciones "MoviesDirectors": movies y directors
-test("POST -> 'URL', should return status code 201 and res.body.name === body.name", async () => {
+test("POST -> 'URL', should return status code 200 and res.body.name === body.name", async () => {
     const genresBody = {
         firstName: "Chris",
         lastName: "Columbus",
@@ -124,7 +124,7 @@ test("POST -> 'URL', should return status code 201 and res.body.name === body.na
 });
 
 //Tabla pivot Relaciones "MoviesGenres": movies y genres
-test("POST -> 'URL', should return status code 201 and res.body.name === body.name", async () => {
+test("POST -> 'URL', should return status code 200 and res.body.name === body.name", async () => {
     const genresBody = {
         name: "Ciencia ficcion",
     };
@@ -139,7 +139,6 @@ test("POST -> 'URL', should return status code 201 and res.body.name === body.na
     };
 
     const movie = await Movie.create(movieBody);
-
     const genreId = `${genre.id}`;
 
     const res = await request(app)
